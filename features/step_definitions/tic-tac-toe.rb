@@ -49,7 +49,7 @@ class TicTacToe
     @name[PLAYERS[@whose_turn]]
   end
 
-  def indicate_palyer_turn
+  def indicate_player_turn
     puts "#{@player}'s Move:"
   end
 
