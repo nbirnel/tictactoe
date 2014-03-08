@@ -2,7 +2,7 @@ class TicTacToe
   SYMBOLS = [:X, :O]
   PLAYERS = [:player, :computer]
   attr_reader :player
-  attr_accessor :player_symbol, :computer_symbol, :players, :whose_turn
+  attr_accessor :player_symbol, :computer_symbol, :players, :whose_turn, :board
 
   def initialize starts=PLAYERS[dien], s=SYMBOLS[dien]
     @name    = {:player => 'Player', :computer => 'Computer'} 
@@ -22,10 +22,6 @@ class TicTacToe
 
   def player= name
     @player = @name[:player] = name
-  end
-
-  def board
-    @board
   end
 
   def open_spots
@@ -72,6 +68,7 @@ class TicTacToe
   def current_state
     @board.map{|pos, state| state.to_s}
   end
+
   private
 
   def toggle_current_player
