@@ -107,6 +107,7 @@ class TicTacToe
     end
     
     @game_over = true unless spots_open?
+    toggle_current_player
   end
 
   def draw?
