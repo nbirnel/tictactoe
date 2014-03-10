@@ -18,8 +18,7 @@ class TicTacToe
       :B1 => ' ', :B2 => ' ', :B3 => ' ',
       :C1 => ' ', :C2 => ' ', :C3 => ' '
     }
-    @game_over = false
-
+    @draw = @game_over = false
   end
 
   def player= name
@@ -84,6 +83,7 @@ class TicTacToe
   end
 
   def determine_winner
+
     winning_line = [
       [:A1, :A2, :A3],
       [:B1, :B2, :B3],
@@ -105,6 +105,12 @@ class TicTacToe
         end
       end
     end
+    
+    @game_over = true unless spots_open?
+  end
+
+  def draw?
+    !(computer_won? || player_won?)
   end
 
   def computer_won?
