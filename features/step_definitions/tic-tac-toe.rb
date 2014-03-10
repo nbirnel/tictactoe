@@ -55,6 +55,10 @@ class TicTacToe
 
   def player_move
     pos = get_player_move.to_sym
+    until self.open_spots.include? pos.to_sym
+      puts "#{pos} is taken, yo. Try again."
+      pos = get_player_move.to_sym
+    end
     @board[pos] = @symbol[:player]
     pos
   end
@@ -67,6 +71,13 @@ class TicTacToe
 
   def current_state
     @board.map{|pos, state| state.to_s}
+  end
+
+  def over?
+    false
+  end
+
+  def determine_winner
   end
 
   private
