@@ -26,7 +26,7 @@ class TicTacToe
   end
 
   def open_spots
-    board.select{|spot, v| v == ' '}.keys
+    board.select{|k, v| v == ' '}.keys
   end
 
   #FIXME refactor these 2
