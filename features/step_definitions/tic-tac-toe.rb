@@ -78,8 +78,6 @@ class TicTacToe
       cs << "\n"
     end
     cs
-
-      
   end
 
   def over?
