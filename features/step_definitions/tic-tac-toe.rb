@@ -77,6 +77,10 @@ class TicTacToe
     false
   end
 
+  def spots_open?
+    open_spots.length > 0
+  end
+
   def determine_winner
   end
 
