@@ -82,31 +82,32 @@ class TicTacToe
   end
 
   def determine_winner
-    a = current_state
+    winning_line = [
+      [:A1, :A2, :A3],
+      [:B1, :B2, :B3],
+      [:C1, :C2, :C3],
 
-    #FIXME refactor, duh
-    [0, 3, 6].each do |row|
-      if a[row] = a[row+1] = a[row+2]
-        winner = a[row]
+      [:A1, :B1, :C1],
+      [:A2, :B2, :C2],
+      [:A3, :B3, :C3],
+
+      [:A1, :B2, :C3],
+      [:A3, :B2, :C1],
+    ]
+    [player_symbol, computer_symbol].each do |sym|
+      owns = @board.select{|k,v| v == sym}.keys
+      winning_line.each do |line|
+        @winning_symbol = sym if (line & owns).length == 3 
       end
     end
+  end
 
-    [0, 1, 2].each do |col|
-      if a[col] = a[col+3] = a[col+6]
-        winner = a[col]
-      end
-    end
-
-    if (a[0] = a[4] = a[8]) || (a[6] = a[4] = a[2])
-      winner = a[4]
-    end
-
-    @winning_token = winner == ' ' ? false : winner
+  def computer_won?
+    @winning_symbol == computer_symbol
   end
 
   def player_won?
-    puts @winning_token
-    @winning_token == player_symbol
+    @winning_symbol == player_symbol
   end
 
   private
