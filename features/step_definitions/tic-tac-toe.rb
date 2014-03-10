@@ -71,7 +71,7 @@ class TicTacToe
   end
 
   def current_state
-    @board.map{|pos, state| state.to_s}
+    @board.values.map{|v| v.to_s}
   end
 
   def over?
