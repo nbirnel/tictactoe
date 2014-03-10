@@ -25,7 +25,7 @@ class TicTacToe
   end
 
   def open_spots
-    board.select{|spot, v| spot if v.is_a? String}.map{|k,v| k}
+    board.select{|spot, v| v == ' '}.keys
   end
 
   #FIXME refactor these 2
@@ -82,7 +82,7 @@ class TicTacToe
   end
 
   def determine_winner
-    a = @board.values
+    a = current_state
 
     #FIXME refactor, duh
     [0, 3, 6].each do |row|
@@ -105,6 +105,8 @@ class TicTacToe
   end
 
   def player_won?
+    puts @winning_token
+    @winning_token == player_symbol
   end
 
   private
