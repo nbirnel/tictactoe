@@ -29,13 +29,10 @@ class TicTacToe
     board.select{|k, v| v == ' '}.keys
   end
 
-  #FIXME refactor these 2
-  def player_symbol
-    @symbol[:player]
-  end
-
-  def computer_symbol
-    @symbol[:computer]
+  [:player, :computer].each do |s|
+    define_method("#{s}_symbol") do
+      instance_variable_get("@symbol")[s]
+    end
   end
 
   def welcome_player
