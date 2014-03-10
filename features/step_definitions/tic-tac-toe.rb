@@ -82,6 +82,29 @@ class TicTacToe
   end
 
   def determine_winner
+    a = @board.values
+
+    #FIXME refactor, duh
+    [0, 3, 6].each do |row|
+      if a[row] = a[row+1] = a[row+2]
+        winner = a[row]
+      end
+    end
+
+    [0, 1, 2].each do |col|
+      if a[col] = a[col+3] = a[col+6]
+        winner = a[col]
+      end
+    end
+
+    if (a[0] = a[4] = a[8]) || (a[6] = a[4] = a[2])
+      winner = a[4]
+    end
+
+    @winning_token = winner == ' ' ? false : winner
+  end
+
+  def player_won?
   end
 
   private
