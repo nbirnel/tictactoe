@@ -55,7 +55,7 @@ class TicTacToe
 
   def player_move
     pos = get_player_move.to_sym
-    until self.open_spots.include? pos.to_sym
+    until self.open_spots.include? pos
       puts "#{pos} is taken, yo. Try again."
       pos = get_player_move.to_sym
     end
