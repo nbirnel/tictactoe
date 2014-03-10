@@ -18,6 +18,8 @@ class TicTacToe
       :B1 => ' ', :B2 => ' ', :B3 => ' ',
       :C1 => ' ', :C2 => ' ', :C3 => ' '
     }
+    @game_over = false
+
   end
 
   def player= name
@@ -74,7 +76,7 @@ class TicTacToe
   end
 
   def over?
-    false
+    @game_over
   end
 
   def spots_open?
@@ -97,7 +99,10 @@ class TicTacToe
     [player_symbol, computer_symbol].each do |sym|
       owns = @board.select{|k,v| v == sym}.keys
       winning_line.each do |line|
-        @winning_symbol = sym if (line & owns).length == 3 
+        if (line & owns).length == 3 
+          @winning_symbol = sym 
+          @game_over = true
+        end
       end
     end
   end
