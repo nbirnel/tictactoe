@@ -71,7 +71,15 @@ class TicTacToe
   end
 
   def current_state
-    @board.values.map{|v| v.to_s}
+    b = @board.values.map{|v| v.to_s}
+    cs = ''
+    [0,3,6].each do |row|
+      b[row...row+3].each{|cell| cs << cell}
+      cs << "\n"
+    end
+    cs
+
+      
   end
 
   def over?
