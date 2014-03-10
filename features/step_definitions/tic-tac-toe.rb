@@ -30,9 +30,29 @@ class TicTacToe
   end
 
   [:player, :computer].each do |s|
+
     define_method("#{s}_symbol") do
       instance_variable_get("@symbol")[s]
     end
+
+#    define_method("#{s}_won?") do
+#      ws = instance_variable_get("@winning_symbol")
+#      ss = instance_variable_get("@#{s}_symbol")
+#      puts ws
+#      puts ss
+#      ws == ss
+#    end
+
+  end
+
+  def computer_won?
+    puts @winning_symbol
+    puts computer_symbol
+    @winning_symbol == computer_symbol
+  end
+
+  def player_won?
+    @winning_symbol == player_symbol
   end
 
   def welcome_player
@@ -115,14 +135,6 @@ class TicTacToe
 
   def draw?
     !(computer_won? || player_won?)
-  end
-
-  def computer_won?
-    @winning_symbol == computer_symbol
-  end
-
-  def player_won?
-    @winning_symbol == player_symbol
   end
 
   private
