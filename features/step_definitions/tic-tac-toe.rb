@@ -1,7 +1,10 @@
 class TicTacToe
   SYMBOLS = [:X, :O]
   PLAYERS = [:player, :computer]
-  attr_reader :player
+  RED = "\e[31m"
+  GREEN = "\e[32m"
+  OFF = "\e[0m"
+  attr_reader :player, :last_taken
   attr_accessor :player_symbol, :computer_symbol, :players, :whose_turn, :board
 
   def initialize starts=PLAYERS.sample, s=SYMBOLS.sample
@@ -66,18 +69,22 @@ class TicTacToe
       pos = get_player_move.to_sym
     end
     @board[pos] = @symbol[:player]
+    @last_taken = pos
     pos
   end
 
   def computer_move
-    puts 'My move, yo:'
+    puts "My move, yo:"
     pos = open_spots.sample
     @board[pos] = @symbol[:computer]
+    @last_taken = pos
     pos
   end
 
   def current_state
-    b = @board.values.map{|v| v.to_s}
+    b = @board.map{|k,v| k == @last_taken ? colorize(v, OFF) : colorize(v)}
+
+    #b = @board.values.map{|v| v.to_s}
     cs = ''
     [0,3,6].each do |row|
       b[row...row+3].each{|cell| cs << cell}
@@ -130,6 +137,10 @@ class TicTacToe
 
   def toggle_current_player
     self.whose_turn = self.whose_turn^1
+  end
+
+  def colorize cell, color = cell == :X ? RED : GREEN
+    "#{color}#{cell.to_s}#{OFF}"
   end
 
 end
