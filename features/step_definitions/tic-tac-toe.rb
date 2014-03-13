@@ -70,6 +70,7 @@ class TicTacToe
   end
 
   def computer_move
+    puts 'My move, yo:'
     pos = open_spots.sample
     @board[pos] = @symbol[:computer]
     pos
