@@ -59,7 +59,7 @@ class TicTacToe
   end
 
   def get_player_move
-    move = gets.chomp
+    move = gets.chomp.upcase
   end
 
   def player_move
